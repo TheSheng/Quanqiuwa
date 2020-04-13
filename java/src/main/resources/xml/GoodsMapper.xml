@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bishe.java.mapper.GoodMapper">
+
+
+   <select id="getTop10" resultType="com.bishe.java.pojo.Goods">
+           select *  from bishe_goods order by saleNum desc limit 10
+   </select>
+    <select id="getLast10" resultType="com.bishe.java.pojo.Goods">
+           select *  from bishe_goods order by price desc limit 10
+   </select>
+    <select id="getType3" resultType="java.util.HashMap">
+       SELECT type ,sum(saleNum) typeSaleNum FROM bishe_goods GROUP BY type
+    </select>
+    <select id="getTypeSaleSum" resultType="java.util.HashMap">
+       SELECT type ,sum(saleNum*price) typeSaleNum FROM bishe_goods   GROUP BY type order by sum(saleNum*price) desc
+   </select>
+    <select id="getRandomOne" resultType="com.bishe.java.pojo.Goods">
+        SELECT * from bishe_goods ORDER BY RAND() limit 1;
+    </select>
+</mapper>
